@@ -60,6 +60,7 @@ export class App extends Component {
       error: null,
       largeImageURL: '',
       isButtonShow: false,
+      loading: false,
     });
   };
 
@@ -92,7 +93,7 @@ export class App extends Component {
           <ImageGallery photos={photos} openModal={this.handleClickImg} />
         )}
         {loading && <Loader />}
-        {!isEmpty && isButtonShow && <Button onClick={this.handleLoadMore} />}
+        {isButtonShow && <Button onClick={this.handleLoadMore} />}
         {isEmpty && <Text>There are no photos matching your search...</Text>}
         {error && <Text>Oops... Sorry, something went wrong {error}.</Text>}
         {largeImageURL && (
