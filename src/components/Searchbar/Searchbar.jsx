@@ -29,7 +29,7 @@ export class Searchbar extends Component {
       <header className={s.searchbar}>
         <form className={s.form} onSubmit={this.handleSubmit}>
           <button type="submit" className={s.button}>
-            <HiMiniMagnifyingGlassCircle size="24" />
+            <HiMiniMagnifyingGlassCircle size="28" />
           </button>
 
           <input
