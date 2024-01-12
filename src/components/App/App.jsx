@@ -52,7 +52,15 @@ export class App extends Component {
   }
 
   handleSubmit = query => {
-    this.setState({ query, isEmpty: false, photos: [], page: 1, error: null });
+    this.setState({
+      query,
+      isEmpty: false,
+      photos: [],
+      page: 1,
+      error: null,
+      largeImageURL: '',
+      isButtonShow: false,
+    });
   };
 
   handleLoadMore = () => {
@@ -66,17 +74,27 @@ export class App extends Component {
   };
 
   render() {
-    const { photos, loading, isButtonShow, error, largeImageURL, isEmpty } =
-      this.state;
+    const {
+      photos,
+      query,
+      loading,
+      isButtonShow,
+      error,
+      largeImageURL,
+      isEmpty,
+    } = this.state;
 
     return (
       <Container>
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery photos={photos} openModal={this.handleClickImg} />
+        {!query && <Text>Let`s find photos together!</Text>}
+        {!error && (
+          <ImageGallery photos={photos} openModal={this.handleClickImg} />
+        )}
         {loading && <Loader />}
-        {isButtonShow && <Button onClick={this.handleLoadMore} />}
-        {isEmpty && <Text>No photos for your query!</Text>}
-        {error && <Text>Oops...Sorry, something went wrong {error}</Text>}
+        {!isEmpty && isButtonShow && <Button onClick={this.handleLoadMore} />}
+        {isEmpty && <Text>There are no photos matching your search...</Text>}
+        {error && <Text>Oops... Sorry, something went wrong {error}.</Text>}
         {largeImageURL && (
           <Modal url={largeImageURL} closeModal={this.handleClickImg} />
         )}

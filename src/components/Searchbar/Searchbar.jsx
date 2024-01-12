@@ -12,7 +12,7 @@ export class Searchbar extends Component {
     e.preventDefault();
 
     if (!this.state.query) {
-      toast.info('No-no! You need to enter search word!');
+      toast.info('No-no! You need to enter search word.');
       return;
     }
     this.props.onSubmit(this.state.query);
@@ -22,6 +22,7 @@ export class Searchbar extends Component {
   handleChange = e => {
     const { value } = e.target;
     this.setState({ query: value.toLowerCase() });
+    this.props.closeModal('');
   };
 
   render() {
