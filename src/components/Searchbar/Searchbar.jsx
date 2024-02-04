@@ -22,7 +22,7 @@ export class Searchbar extends Component {
   handleChange = e => {
     const { value } = e.target;
     this.setState({ query: value.toLowerCase() });
-    this.props.closeModal('');
+    // this.props.closeModal('');
   };
 
   render() {
